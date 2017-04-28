@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>02 - Javascript+CSS Clock</title>
+  <style>
+    html{
+      font-size: 10px;
+    }
+    html,body{
+      margin: 0;
+      padding: 0;
+    }
+    .box{
+      width: 35rem;
+      height: 38rem;
+      background: rgb(205,205,205);
+      border-radius: 1rem;
+      margin: 5% auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+    .clock{
+      width: 30rem;
+      height: 30rem;
+      background: #fff url(ios_clock.svg) no-repeat center;
+      background-size: 88%;
+      border-radius: 50%;
+      position: relative;
+    }
+    .clock:after{
+      content: '';
+      width: 1.5rem;
+      height: 1.5rem;
+      background: #000;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);   /* 向左上移动自身的50% */
+      z-index: 10;
+    }
+
+    /*放置指针容器*/
+    .hours-container,.minutes-container,.seconds-container{
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+    .hours{
+      width: 3%;
+      height: 20%;
+      background: #000;
+      transform-origin: 50% 100%;
+      position: absolute;
+      top: 30%;
+      left: 48.5%;
+    }
+    .minutes{
+      width: 2%;
+      height: 37%;
+      background: #000;
+      transform-origin: 50% 100%;
+      position: absolute;
+      top: 12%;
+      left: 49%;
+    }
+    .seconds{
+      width: 1%;
+      height: 40%;
+      background: #f00;
+      transition-duration: .5s;
+      transform-origin: 50% 90%;
+      position: absolute;
+      top: 20%;
+      left: 49.5%;
+      z-index: 8;
+    }
+
+    /*@keyframes rotate {
+      100% {
+        transform: rotateZ(360deg);
+      }
+    }*/
+
+    /*.hours-container {
+      animation: rotate 43200s infinite linear;
+    }
+    .minutes-container {
+      animation: rotate 3600s infinite steps(60);
+    }
+    .seconds-container {
+      animation: rotate 60s infinite steps(60);
+    }*/
+
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <article class="clock">
+      <div class="hours-container">
+        <div class="hours"></div>
+      </div>
+      <div class="minutes-container">
+        <div class="minutes"></div>
+      </div>
+      <div class="seconds-container">
+        <div class="seconds"></div>
+      </div>
+    </article>
+  </div>
+
+</body>
+
+<script>
+
+  const hourHand = document.querySelector('.hours-container');
+  const minuteHand = document.querySelector('.minutes-container');
+  const secondHand = document.querySelector('.seconds-container');
+
+  function time(){
+    const now = new Date();
+    const hour = now.getHours();
+    const minute = now.getMinutes();
+    const second = now.getSeconds();
+
+    const secondDegree = second * 6;
+    const minuteDegree = minute * 6 + (second / 10);
+    const hourDegree = (hour * 30) + (minute / 2);
+
+    hourHand.style.transform = `rotateZ(${hourDegree}deg)`;
+    minuteHand.style.transform = `rotateZ(${minuteDegree}deg)`;
+    secondHand.style.transform = `rotateZ(${secondDegree}deg)`;
+  }
+  setInterval(time, 1000);
+
+</script>
+
+</html>
