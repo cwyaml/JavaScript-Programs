@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Typewriter</title>
+  <style>
+    html{
+      font-size: 10px;
+    }
+    html,body{
+      margin: 0;
+      padding: 0;
+    }
+    .typewriter{
+      width: 50rem;
+      padding: 1.5rem 3rem;
+      border: 1px solid #ccc;
+      line-height: 1.5;
+      font-size: 1.6rem;
+      color: #333;
+      margin: 5% auto;
+    }
+
+    @keyframes flash {
+      0%{
+        visibility: visible;
+      }
+      100%{
+        visibility: hidden;
+      }
+    }
+    .typewriter:after{
+      content: '_';
+      animation: flash .6s steps(2,start) infinite;
+    }
+    .typewriter.gameover:after {
+        display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="typewriter">
+      1. Whatever is worth doing is worth doing well.<br /> &emsp;任何值得做的，就把它做好。
+      <br /><br />
+      2. Happiness is a way station between too much and too little.<br /> &emsp;幸福是太多和太少之间的一站。
+      <br /><br />
+      3. In love folly is always sweet.<br /> &emsp;恋爱中，干傻事总是让人感到十分美妙。
+      <br /><br />
+      4. Your happy passer-by all knows, my distressed there is no place hides.<br /> &emsp;你的幸福路人皆知，我的狼狈无处遁形。
+      <br /><br />
+      5. You may be out of my sight, but never out of my mind.<br /> &emsp;你也许已走出我的视线，但从未走出我的思念。
+  </div>
+
+</body>
+
+<script>
+
+  var typewriter = document.querySelector('.typewriter');
+  var code = typewriter.innerHTML;
+
+  typewriter.innerHTML = '';
+
+  var i = 0;
+  (function typewriting(){
+    i++;
+    if(i < code.length){
+      switch (code.charAt(i)){
+        case '<':
+          i = code.indexOf('>',i);
+          break;
+        case '&':
+          i = indexOf(';',i);
+          break;
+      }
+      typewriter.innerHTML = code.substring(0,i);
+      setTimeout(typewriting,100);
+    }
+    else{
+      typewriter.classList.add('gameover');
+    }
+  })();
+
+</script>
+
+</html>

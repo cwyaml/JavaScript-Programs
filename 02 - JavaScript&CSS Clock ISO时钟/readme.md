@@ -1,12 +1,20 @@
-## 简介
+> 给自己提出一个挑战。用纯 JavaScript 来写东西，不借助框架和库，也不使用编译器和引用。
+> 每个小程序都会给出详细的教程，保证每个新手都能看懂（不出意外的话每天都会更新）
+> 项目地址：[cwyaml](https://github.com/cwyaml)/**[JavaScript-Programs](https://github.com/cwyaml/JavaScript-Programs)**
+> 如果喜欢的话 请给个  ** ★star**  非常感谢！！
+
 第二天，我们开始用 CSS 和简单的 JavaScript 实现一个时钟的挑战。
 
-**实现效果：**
+## 实现效果：
 
 ![clock](http://upload-images.jianshu.io/upload_images/4030390-385bda816546bf99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-## 布局
-### HTML
+## 项目分析
+1、首先要获取客户端的时间
+2、然后分别计算时针、分针和秒针在当前时间旋转的角度即可
+
+## HTML&CSS
+### 布局
 ``` html
 <div class="box">
   <article class="clock">
@@ -22,7 +30,6 @@
   </article>
 </div>
 ```
-
 - `.box` 是为了布局的方便
 - 然后每个指针都需要一个 `*-container` 容器
 
@@ -60,7 +67,7 @@ html,body{
 
 - `width: 35rem; height: 38rem;` 这个比例比较顺眼吧
 - `.box` 使用 **Flex** 布局方式，并且使其中的 `.clock` 水中、垂直方向都居中。看过第一天教程应该都明白 Flex 布局的。
-- Clock 的背景使用一张图片。[获取地址](#)
+- Clock 的背景使用一张图片。[获取地址](https://github.com/cwyaml/JavaScript30/blob/master/02%20-%20JavaScript%26CSS%20Clock/ios_clock.svg)
 
 ### 添加实心的小圆点
 使用 CSS3 中的 **伪元素** 为时钟添加实心小圆点。
@@ -204,7 +211,7 @@ const now = new Date();
 const hour = now.getHours();
 const minute = now.getMinutes();
 const second = now.getSeconds();
-````
+```
 
 ### 计算每个指针应旋转的角度
 在 CSS3 中角度单位一共有四种：
@@ -222,7 +229,6 @@ const secondDegree = second * 6 + 90;
 const minuteDegree = minute * 6 + (second / 10) + 90;
 const hourDegree = (hour * 30) + (minute / 2) + 90;
 ```
-
 - `+90` 是因为角度的起始位置为水平的 X 轴，为了和 Clock 指针起始位置（Y 轴）做统一；
 - 秒针的计算最简单，`(second / 60) * 360 + 90;`
 - 分针要考虑秒针的影响，如过了30秒，相当于半分钟。公式为： `当前分钟数 + 秒数在分钟的映射`；即：`(( minutes/ 60) * 360) + ((seconds / 60) * 6) + 90;`
