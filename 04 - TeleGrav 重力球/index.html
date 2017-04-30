@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>重力球</title>
+  <style>
+    html,body{
+      margin: 0;
+      padding: 0;
+    }
+    #box{
+      width: 100px;
+      height: 100px;
+      background: #f00;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+  </div>
+</body>
+<script>
+  var oBox = document.getElementById('box');
+
+  oBox.onmousedown = function(evt){
+    var oEvent = evt || window.event;   //获取事件对象，兼容IE
+    var iLeft = oEvent.offsetX;
+    var iTop = oEvent.offsetY;
+
+    var lastX = 0;
+    var lastY = 0;
+
+    maxL = document.documentElement.clientWidth - oBox.offsetWidth,
+    maxT = document.documentElement.clientHeight - oBox.offsetHeight;
+
+    document.onmousemove = function(evt){
+      var oEvent = evt || window.event;
+      var left = oEvent.clientX - iLeft;
+      var top = oEvent.clientY - iTop;
+
+      //防止拖拽出可移动范围
+      if(left <= 0) {left = 0}
+      if(top <= 0) {top = 0}
+      if(left >= maxL) {left = maxL}
+      if(top >= maxT) {top = maxT}
+
+      //改变 box 的left 和 top
+      oBox.style.left = left+'px';
+      oBox.style.top = top+'px';
+
+      speedX = left - lastX;
+      speedY = top - lastY;
+      lastX = left;
+      lastY = top;
+    }
+
+    document.onmouseup = function(){
+      document.onmousemove = null;
+      startMove();
+    }
+    clearInterval(timer);
+  }
+
+var timer = null;
+function startMove() {
+	var nowX = oBox.offsetLeft;
+	var nowY = oBox.offsetTop;
+
+	clearInterval(timer);
+
+	timer = setInterval(function() {
+		speedY += 2;
+
+		nowX += speedX;
+		if (nowX > maxL) {
+			speedX *= -0.8;
+			nowX = maxL;
+		} else if (nowX < 0) {
+			speedX *= -0.8;
+			nowX = 0;
+		}
+
+		nowY += speedY;
+		if (nowY > maxT) {
+			speedY *= -0.8;
+			speedX *= 0.8
+			nowY = maxT;
+		} else if (nowY < 0) {
+			speedY *= -1;
+			speedX *= 0.8;
+			nowY = 0;
+		}
+
+		if (Math.abs(speedX) < 1) {
+			speedX = 0;
+
+		}
+		if (Math.abs(speedY) < 1) {
+			speedY = 0;
+		}
+
+		if (speedX == 0 && speedY == 0 && nowY == maxT) {
+			clearInterval(timer);
+		}
+		oBox.style.left = nowX + 'px';
+		oBox.style.top = nowY + 'px';
+	}, 25)
+}
+
+</script>
+</html>

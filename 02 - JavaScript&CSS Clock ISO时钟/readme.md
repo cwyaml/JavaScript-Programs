@@ -1,6 +1,7 @@
 > 给自己提出一个挑战。用纯 JavaScript 来写东西，不借助框架和库，也不使用编译器和引用。
 > 每个小程序都会给出详细的教程，保证每个新手都能看懂（不出意外的话每天都会更新）
 > 项目地址：[cwyaml](https://github.com/cwyaml)/**[JavaScript-Programs](https://github.com/cwyaml/JavaScript-Programs)**
+
 > 如果喜欢的话 请给个  ** ★star**  非常感谢！！
 
 第二天，我们开始用 CSS 和简单的 JavaScript 实现一个时钟的挑战。
