@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html{
+      font-size: 10px;
+    }
+    html,body{
+      margin: 0;
+      padding: 0;
+    }
+
+    #sp1{
+      width: 6rem;
+      height: 4rem;
+      background: rgba(62,54,58,.4);
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    #img1{
+      width: 36rem;
+      height: 22.5rem;
+    }
+    #img2{
+      width: 288rem;
+      height: 180rem;
+      position: absolute;
+    }
+    #box{
+      width: 48rem;
+      height: 32rem;
+      position: absolute;
+      left: 37rem;
+      top: 0;
+      overflow: hidden;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <span id="sp1"></span>
+  <img src="timg.jpg" alt="" id="img1">
+  <div id="box">
+      <img src="timg.jpg" alt="" id="img2">
+  </div>
+</body>
+  <script>
+
+    var img1 = document.getElementById('img1');
+    var sp1 = document.getElementById('sp1');
+    var oBox = document.getElementById('box');
+    var img2 = document.getElementById('img2');
+
+    sp1.onmouseover = function(){
+      oBox.style.display = 'block';
+    }
+    sp1.onmouseout = function(){
+      oBox.style.display = 'none';
+    }
+    document.onmousemove = function(evt){
+      var event = evt || window.event;
+      var x = event.clientX - sp1.offsetWidth / 2;
+      var y = event.clientY - sp1.offsetHeight / 2;
+
+      if(x < 0){ x = 0 }
+      if(y < 0){ y = 0 }
+      if(x > img1.offsetWidth - sp1.offsetWidth){
+        x = img1.offsetWidth - sp1.offsetWidth;
+      }
+      if(y > img1.offsetHeight - sp1.offsetHeight){
+        y = img1.offsetHeight - sp1.offsetHeight;
+      }
+      
+      if(event.clientX < img1.offsetWidth && event.clientY < img1.offsetHeight){
+        sp1.style.left = x + 'px';
+        sp1.style.top = y + 'px';
+        img2.style.left = -x * (img2.offsetWidth / img1.offsetWidth) + 'px';
+        img2.style.top = -y * (img2.offsetHeight / img1.offsetHeight) + 'px';
+      }
+    }
+
+  </script>
+</html>

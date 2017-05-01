@@ -1,8 +1,10 @@
 > 给自己提出一个挑战。用纯 JavaScript 来写东西，不借助框架和库，也不使用编译器和引用。
-> 每个小程序都会给出详细的教程，保证每个新手都能看懂（不出意外的话每天都会更新）
-> 项目地址：[cwyaml](https://github.com/cwyaml)/**[JavaScript-Programs](https://github.com/cwyaml/JavaScript-Programs)**
-
-> 如果喜欢的话 请给个  ** ★star**  非常感谢！！
+> 每个小程序都会给出详细的教程，保证每个新手都能看懂（不出意外的话每天都会更新） <br>
+>
+> **项目地址：** [cwyaml](https://github.com/cwyaml)/**[JavaScript-Programs](https://github.com/cwyaml/JavaScript-Programs)**  <br>
+> **教程目录：** [JavaScript 每天一个小程序](http://www.jianshu.com/p/81d379ba9003) <br>
+>
+> 如果喜欢的话 请给个   ★star  非常感谢！！
 
 第三天，来做一个有关文字的特效吧！不知道该取什么合适的名字，索性就叫做 **typewriter** (打字机) 吧！
 
@@ -43,9 +45,10 @@
   margin: 5% auto;
 }
 ```
+
 整个文本外有一个边框，放在了页面的中心位置。
 
-![文本显示效果](http://upload-images.jianshu.io/upload_images/4030390-f3fa21949936aa56.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](http://upload-images.jianshu.io/upload_images/4030390-5c57a710b99300ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### 需要一个光标
 通过 **伪元素** 来实现这个光标。
@@ -66,12 +69,16 @@
     display: none;
 }
 ```
-- 光标就长这个样子 `content:'_';` 吧！
-- 使用 `@keyframes` 关键字定义一个动画，效果为从 **显示** 状态 过度到 **隐藏** 状态。
-- `animation` 属性为光标应用一个动画。动画的名称为 `flash`、这个动画要在 **0.6s** 完成、动画过渡类型 和 执行次数（infinite为无限循环）
-- `.typewriter.gameover:after{}` 当文字全部显示完毕后，将光标隐藏。
 
-## JS
+1、光标就长这个样子 `content:'_';` 吧！
+
+2、使用 `@keyframes` 关键字定义一个动画，效果为从 **显示** 状态 过度到 **隐藏** 状态。
+
+3、 `animation` 属性为光标应用一个动画。动画的名称为 `flash`、这个动画要在 **0.6s** 完成、动画过渡类型 和 执行次数（infinite为无限循环）
+
+4、`.typewriter.gameover:after{}` 当文字全部显示完毕后，将光标隐藏。
+
+## JS部分
 
 ### 获取文本内容
 获取整个 `typewriter` 容器中的文本，将其保存在变量 `code` 中。
@@ -92,41 +99,45 @@ typewriter.innerHTML = '';
 
 我们用一个函数来实现这个过程：
 ``` js
-  var i = 0;
-  function typewriting(){
-    i++;
-    if(i < code.length){
-      switch (code.charAt(i)){
-        case '<':
-          i = code.indexOf('>',i);
-          break;
-        case '&':
-          i = indexOf(';',i);
-          break;
-      }
-      typewriter.innerHTML = code.substring(0,i);
-      setTimeout(typewriting,100);
-    }
-    else{
-      typewriter.classList.add('gameover');
-    }
+var i = 0;
+function typewriting(){
+  i++;
+  if(i < code.length){
+    switch (code.charAt(i)){
+      case '<':
+      i = code.indexOf('>',i);
+      break;
+      case '&':
+      i = indexOf(';',i);
+      break;
   }
+  typewriter.innerHTML = code.substring(0,i);
+    setTimeout(typewriting,100);
+  }
+  else{
+    typewriter.classList.add('gameover');
+  }
+}
 ```
-- 三个操作字符串的方法：
+1、三个操作字符串的方法：
 `charAt()` 方法可返回指定位置的字符
 `indexOf()` 方法返回某个指定字符在字符串中首次出现的位置。
 `substring()` 方法用于提取字符串中介于两个指定下标之间的字符。
-- `typewriter.innerHTML = code.substring(0,i);` 将 `code` 中保存的字符的 0 ~ i 打印出来。
+
+2、 `typewriter.innerHTML = code.substring(0,i);` 将 `code` 中保存的字符的 0 ~ i 打印出来。
 
 > **注：** 每次执行循环其实都是从 0 ~ i 打印一遍，只不过从 0 ~ i-1 已经存在，再视觉上就被认为只打印了第 i 个字符
 
-- `switch` 语句判断第 **i** 个字符是否为 `<` 或 `&`？如果是其中之一，则从这个字符开始往后寻找 `>` 或 `;`，找到后将其 **i** 值赋给 **i** （这时的 code[i] 已经是 `<br>` 或 ` ` 之后的那个字符）。也就是打印跳过了 `<br>` 或 ` ` 。
+3、`switch` 语句判断第 **i** 个字符是否为 `<` 或 `&`？如果是其中之一，则从这个字符开始往后寻找 `>` 或 `;`，找到后将其 **i** 值赋给 **i** （这时的 code[i] 已经是 `<br>` 或 ` ` 之后的那个字符）。也就是打印跳过了 `<br>` 或 ` ` 。
 
 > 感觉自己说不明白了，还是举个例子吧！
 > 假如 `code = 'ab<br>cd';`
 > 当第一次循环，打印出 `a`、第二次循环打印出 `ab` 、第三次循环打印出 `ab<br>c`（<br>虽然被打印出来了，但是不会显示的，所以你只看到打印出来了 c） 、第四次循环打印出 `ab<br>cd`。
 
-- `setTimeout()` 定时器，每隔 100ms 执行一次这个循环，也就是控制打印的速度。
-- 当 `i > code.length` 时，给光标添加 `.gameover` 样式，将其隐藏。
+4、 `setTimeout()` 定时器，每隔 100ms 执行一次这个循环，也就是控制打印的速度。
+
+5、 当 `i > code.length` 时，给光标添加 `.gameover` 样式，将其隐藏。
 
 到此这个效果全部实现！！
+
+> 文章中如果有错误欢迎指出，非常乐意和大家一起交流。
