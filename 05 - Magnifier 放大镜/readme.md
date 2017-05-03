@@ -26,9 +26,9 @@
 ### 基本的布局
 ``` html
 <span id="sp1"></span>
-![](timg.jpg)
+<img src="timg.jpg" alt="" id="img1">
 <div id="box">
-    ![](timg.jpg)
+    <img src="timg.jpg" alt="" id="img2">
 </div>
 ```
 1、两张图片分别为 `img1` 和 `img2`;

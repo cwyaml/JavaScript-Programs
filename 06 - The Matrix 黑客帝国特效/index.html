@@ -30,7 +30,7 @@
     ctx.font = '10pt';
     yPositions.map(function(y,index){  //y当前值，index为当前值的下标
       text = String.fromCharCode(1e2 + Math.random() * 330);  //生成随机字母
-      x = (index * 10) + 10;
+      x = index * 10;
       cav.getContext('2d').fillText(text,x,y);
       if (y > Math.random() * 1e4) {
           yPositions[index] = 0;

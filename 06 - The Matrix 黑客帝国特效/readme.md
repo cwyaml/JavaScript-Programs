@@ -58,7 +58,7 @@ var draw = function(){
   ctx.font = '20px';
   yPositions.map(function(y,index){  
     text = String.fromCharCode(1e2 + Math.random() * 330);  //生成随机字母
-    x = (index * 10) + 10;
+    x = index * 10;
     cav.getContext('2d').fillText(text,x,y);
     if (y > Math.random() * 1e4) {
         yPositions[index] = 0;
@@ -96,7 +96,7 @@ text = String.fromCharCode(1e2 + Math.random() * 330);
 
 6、用 x 和 y 来指定字符在页面中的位置。x 指定没列字符占 10px 的宽度，y 同样每次增加 10px，为每个字符在 y 方向占 10px 高度。当然每列字符不可能数量都相同，所以只要 y 的值大于一个随机数之后新的字符就生成在页面顶部。
 ``` js
-x = (index * 10) + 10;
+x = index * 10;
 if (y > Math.random() * 1e4) {
   yPositions[index] = 0;
 } else {
