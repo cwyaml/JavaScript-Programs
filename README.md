@@ -18,3 +18,5 @@
 [05 - Magnifier 放大镜](http://www.jianshu.com/p/a1684b7980d3)
 
 [06 - The Matrix 黑客帝国特效](http://www.jianshu.com/p/b49e0897d62e)
+
+[07 - Barrage 弹幕实现原理](http://www.jianshu.com/p/ff57dd26865f)
