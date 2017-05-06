@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html,body{
+      margin: 0;
+      padding: 0;
+      background: #193549;
+      color: #fff;
+      font-size: 10px;
+    }
+    #title{
+      width: 100%;
+      height: 15vh;
+      font-size: 4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .controls{
+      width: 70%;
+      height: 10vh;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .label{
+      font-size: 2rem;
+    }
+    input{
+      width: 100px;
+    }
+    #box{
+      width: 100%;
+      height: 75vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    :root{
+      --baseColor: #000;
+      --blur: 2px;
+      --spacing: 5px;
+      --radius: 5px;
+    }
+    img{
+      border: var(--spacing) solid var(--baseColor);
+      border-radius: var(--radius);
+      filter: blur(var(--blur));    /*滤镜*/
+    }
+  </style>
+</head>
+<body>
+  <div id="title">Update CSS Variables with JS</div>
+
+  <div class="controls">
+    <label for="border" class="label">Border:</label>
+    <input type="range" id="border" name="spacing" min="1" max="30" value="5" data-sizing="px">
+
+    <label for="radius" class="label">Radius:</label>
+    <input type="range" id="radius" name="radius" min="0" max="50" value="5" data-sizing="px" data-sizing="px">
+
+    <label for="blur" class="label">Blur:</label>
+    <input type="range" id="blur" name="blur" min="0" max="10" value="2" data-sizing="px">
+
+    <label for="colors" class="label">Border Color:</label>
+    <input type="color" id="colors" name="baseColor" value="#000">
+  </div>
+
+  <div id="box">
+    <img src="bg.jpg" alt="#">
+  </div>
+
+  <script>
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => input.addEventListener('mousemove',updateData));
+    inputs.forEach(input => input.addEventListener('change',updateData));
+    function updateData(){
+      const data = this.dataset.sizing || '';
+      document.documentElement.style.setProperty(`--${this.name}`,this.value+data);
+    }
+  </script>
+</body>
+</html>
