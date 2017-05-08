@@ -22,3 +22,5 @@
 [07 - Barrage 弹幕实现原理](http://www.jianshu.com/p/ff57dd26865f)
 
 [08 - Variables CSS变量](http://www.jianshu.com/p/68f429ce167c)
+
+[09 - 做个音乐播放器](http://www.jianshu.com/p/4a02ae30cf43)
