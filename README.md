@@ -24,3 +24,5 @@
 [08 - Variables CSS变量](http://www.jianshu.com/p/68f429ce167c)
 
 [09 - 做个音乐播放器](http://www.jianshu.com/p/4a02ae30cf43)
+
+[10 - 图片 Base64 编码](http://www.jianshu.com/p/59185c3a80dc)

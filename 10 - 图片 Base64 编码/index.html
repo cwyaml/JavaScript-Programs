@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    html{
+      font-size: 625%;
+    }
+    #box{
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    img{
+      width: 5rem;
+      height: 3rem;
+      border: 1px solid #ccc;
+      overflow: hidden;
+    }
+    #btn{
+      width: 1.5rem;
+      margin: 0 .1rem;
+      display: flex;
+      flex-direction: column;
+    }
+    #btn button{
+      margin: .1rem 0;
+    }
+
+  </style>
+</head>
+<body>
+
+
+  <div id="box">
+    <img id="preview" src="" alt="">
+    <div id="btn">
+      <input type="file" id="file" accept="image/*">
+      <button type="button" id="button">获取 Base64 编码</button>
+    </div>
+    <textarea id="textarea" name="base64" rows="15" cols="60"></textarea>
+  </div>
+</body>
+
+<script>
+
+var inputFile = document.getElementById('file');
+inputFile.onchange = function imgPreview(){
+  //判断是否支持FileReader
+  if (window.FileReader) {
+      var reader = new FileReader();
+  } else {
+      alert("换个浏览器试一下！");
+  }
+
+  //获取文件
+  var file = this.files[0];
+
+  reader.onload = function(e) {
+      //获取图片dom
+      var img = document.getElementById("preview");
+      //图片路径设置为读取的图片
+      img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+
+}
+
+
+var button = document.getElementById('button');
+button.onclick = function(){
+  var preview = document.getElementById('preview');
+  var textarea = document.getElementById('textarea');
+  textarea.innerHTML = preview.src;
+}
+
+
+
+</script>
+</html>
