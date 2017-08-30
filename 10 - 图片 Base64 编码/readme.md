@@ -1,14 +1,14 @@
 > 给自己提出一个挑战。用纯 JavaScript 来写东西，不借助框架和库，也不使用编译器和引用。
-> 每个小程序都会给出详细的教程，保证每个新手都能看懂（不出意外的话每天都会更新） <br>
+> 每个小程序都会给出详细的教程，保证每个新手都能看懂（不出意外的话每周都会更新） <br>
 >
 > **项目地址：** [cwyaml](https://github.com/cwyaml)/**[JavaScript-Programs](https://github.com/cwyaml/JavaScript-Programs)**  <br>
-> **教程目录：** [JavaScript 每天一个小程序](http://www.jianshu.com/p/81d379ba9003) <br>
+> **教程目录：** [JavaScript 每周一个小程序](http://www.cwyaml.top/2017/04/25/%E6%AF%8F%E5%91%A8%E4%B8%80%E4%B8%AAJS%E5%B0%8F%E7%A8%8B%E5%BA%8F/) <br>
 >
 > 如果喜欢的话 请给个   ★star  非常感谢！！
 
 ![](http://upload-images.jianshu.io/upload_images/4030390-00c23c03d7ab652c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-第十天，一起来认识一下 **图片的 Base64 位编码** 。这有利于优化你的网页。
+第十周，一起来认识一下 **图片的 Base64 位编码** 。这有利于优化你的网页。
 
 最后做一个小网页，实现用户上传图片，点击按钮获得该图片的 Base64 位编码的功能。
 
